@@ -8,7 +8,8 @@ interface UserItemProps {
 }
 
 export const UserItem: React.FC<UserItemProps> = ({ user }) => {
-  const { handleUserSelect, selectedUser } = useContext(PostsContext);
+  const { handleUserSelect, selectedUser, setSelectedPost } =
+    useContext(PostsContext);
 
   return (
     <a
@@ -19,6 +20,7 @@ export const UserItem: React.FC<UserItemProps> = ({ user }) => {
       onClick={e => {
         e.preventDefault();
         handleUserSelect(user);
+        setSelectedPost(null);
       }}
     >
       {user.name}

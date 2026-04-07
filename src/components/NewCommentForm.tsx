@@ -37,18 +37,21 @@ export const NewCommentForm: React.FC<Props> = ({
   const handleSetAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
+    setNameInputError('');
     setAuthorName(value);
   };
 
   const handleSetEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
+    setEmailInputError('');
     setEmail(value);
   };
 
   const handleSetCommentText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
 
+    setCommentInputError('');
     setCommentText(value);
   };
 
@@ -110,7 +113,8 @@ export const NewCommentForm: React.FC<Props> = ({
             className={cn('input', {
               'is-danger': nameInputError,
             })}
-            onInput={handleSetAuthor}
+            onChange={handleSetAuthor}
+            value={authorName}
           />
 
           <span className="icon is-small is-left">
@@ -148,7 +152,8 @@ export const NewCommentForm: React.FC<Props> = ({
             className={cn('input', {
               'is-danger': emailInputError,
             })}
-            onInput={handleSetEmail}
+            onChange={handleSetEmail}
+            value={email}
           />
 
           <span className="icon is-small is-left">
@@ -185,7 +190,8 @@ export const NewCommentForm: React.FC<Props> = ({
             className={cn('textarea', {
               'is-danger': commentInputError,
             })}
-            onInput={handleSetCommentText}
+            value={commentText}
+            onChange={handleSetCommentText}
           />
         </div>
 

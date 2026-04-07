@@ -50,13 +50,13 @@ export const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
           {isLoadingComments && <Loader></Loader>}
 
           {commentsError && (
-            <p className="title is-4" data-cy="CommentsErrorMessage">
+            <p className="title is-4" data-cy="CommentsError">
               {commentsError}
             </p>
           )}
 
           {!isLoadingComments && !commentsError && comments.length === 0 ? (
-            <p className="title is-4" data-cy="NoCommentsYet">
+            <p className="title is-4" data-cy="NoCommentsMessage">
               No comments yet
             </p>
           ) : !isLoadingComments ? (
@@ -75,7 +75,7 @@ export const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
             </>
           ) : null}
 
-          {!isCommentFormActive && (
+          {!isCommentFormActive && !isLoadingComments && !commentsError && (
             <button
               data-cy="WriteCommentButton"
               type="button"

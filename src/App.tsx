@@ -45,7 +45,10 @@ export const App = () => {
                 {isLoading && <Loader />}
 
                 {error && (
-                  <div className="notification is-danger" data-cy="Error">
+                  <div
+                    className="notification is-danger"
+                    data-cy="PostsLoadingError"
+                  >
                     {error}
                   </div>
                 )}
