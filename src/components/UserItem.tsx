@@ -1,18 +1,21 @@
 import { useContext } from 'react';
 import { PostsContext } from '../context/PostsContext';
 import { User } from '../types/User';
+import cn from 'classnames';
 
 interface UserItemProps {
   user: User;
 }
 
 export const UserItem: React.FC<UserItemProps> = ({ user }) => {
-  const { handleUserSelect } = useContext(PostsContext);
+  const { handleUserSelect, selectedUser } = useContext(PostsContext);
 
   return (
     <a
       href={`#user-${user.id}`}
-      className="dropdown-item"
+      className={cn('dropdown-item', {
+        'is-active': selectedUser?.id === user.id,
+      })}
       onClick={e => {
         e.preventDefault();
         handleUserSelect(user);

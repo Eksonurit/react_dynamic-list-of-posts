@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { User } from '../types/User';
 import { UserItem } from './UserItem';
 import cn from 'classnames';
@@ -12,10 +12,32 @@ export const UserSelector: React.FC<UserSelectorProps> = ({ users }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { selectedUser } = useContext(PostsContext);
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <div
       data-cy="UserSelector"
-      onClick={() => setIsOpen(prevState => (prevState ? false : true))}
+      ref={dropdownRef}
+      onClick={() => setIsOpen(!isOpen)}
       className={cn('dropdown', { 'is-active': isOpen })}
     >
       <div className="dropdown-trigger">

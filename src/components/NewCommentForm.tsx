@@ -36,32 +36,20 @@ export const NewCommentForm: React.FC<Props> = ({
 
   const handleSetAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const clearValue = value.trim();
-    const isEmpty = clearValue.length === 0 && value.length > 0;
 
     setAuthorName(value);
-
-    setNameInputError(isEmpty ? 'Task title cannot be empty' : '');
   };
 
   const handleSetEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const clearValue = value.trim();
-    const isEmpty = clearValue.length === 0 && value.length > 0;
 
     setEmail(value);
-
-    setEmailInputError(isEmpty ? 'Task title cannot be empty' : '');
   };
 
   const handleSetCommentText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
-    const clearValue = value.trim();
-    const isEmpty = clearValue.length === 0 && value.length > 0;
 
     setCommentText(value);
-
-    setCommentInputError(isEmpty ? 'Task title cannot be empty' : '');
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
